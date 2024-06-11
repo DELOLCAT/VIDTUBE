@@ -1,11 +1,11 @@
 {"djfhejs":[
     {"name":"the first vid"},
     {"thumbnail":"/thumbnails/djfhejs.png"},
-    {"file":"vids/djfhejs.mp4"}
+    {"file":"/vids/djfhejs.mp4"}
 ],
 
 "hdfuoru":[
     {"name":"lol"},
-    {"thumbnail":"none"},
-    {"file":"vids/hdfuoru.mp4"}
+    {"thumbnail":"/thumbnails/none.svg"},
+    {"file":"/vids/hdfuoru.mp4"}
 ]}
