@@ -11,7 +11,7 @@
     <style>
         #player-container {
             width: 480px; /* Set width */
-            height: 360px; /* Set height */
+            height: 356px; /* Set height */
             position: relative;
             margin: 0 auto; /* Center the player */
             overflow: hidden; /* Hide overflow to prevent scrollbars */
@@ -34,13 +34,17 @@
             right: 0;
             z-index: 1; /* Ensure it's above other controls */
         }
+        body,html {
+            margin: 0px;
+            padding: 0px;
+        }
     </style>
 </head>
 <body>
     <!-- Video.js Player -->
     <div id="player-container">
-        <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="480" height="360">
-            <source src="your-video-file.mp4" type="video/mp4">
+        <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="480" height="356">
+            <source src="C:\Users\ahmad\Documents\GitHub\VIDTUBE\vids\hdfuoru.mp4" type="video/mp4">
             <!-- Fallback for browsers that don't support HTML5 video -->
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -58,8 +62,8 @@
             // Player options
             controls: true, // Use native controls
             fluid: false, // Disable fluid resizing
-            width: 480, // Set width explicitly
-            height: 360 // Set height explicitly
+            width: 480, // Set width explicitly 
+            height: 356 // Set height explicitly
         });
 
         // Add custom button to control bar
