@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plyr Custom Button</title>
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <title>Video.js Custom Button in Control Bar</title>
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet">
+
+    <!-- Custom CSS for player and controls -->
     <style>
-        .plyr__controls__item.plyr__custom-button {
+        #player-container {
+            width: 480px;
+            height: 360px;
+            position: relative;
+            margin: 0 auto; /* Center the player */
+            overflow: hidden; /* Hide overflow to prevent scrollbars */
+        }
+
+        /* Custom button styles */
+        .vjs-custom-button {
             background-color: #4CAF50; /* Green */
-            border: none;
             color: white;
-            padding: 5px 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            border-radius: 8px;
-            font-family: "Montserrat", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 300;
-            font-style: normal;
+        }
+
+        /* Customizing control bar */
+        .vjs-control-bar .vjs-spacer {
+            flex: 1; /* Expand to fill space */
         }
     </style>
 </head>
 <body>
-    <video id="player" playsinline controls width="480px" height="356px">
-        <source src="
+    <!-- Video.js Player -->
+    <div id="player-container">
+        <video id="my-video" class="video-js" controls preload="auto" width="640" height="360">
+            <source src="

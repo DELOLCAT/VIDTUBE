@@ -1,4 +1,43 @@
-" type="video/mp4">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video.js Custom Button in Control Bar</title>
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet">
+
+    <!-- Custom CSS for player and controls -->
+    <style>
+        #player-container {
+            width: 640px;
+            height: 360px;
+            position: relative;
+            margin: 0 auto; /* Center the player */
+            overflow: hidden; /* Hide overflow to prevent scrollbars */
+        }
+
+        /* Custom button styles */
+        .vjs-custom-button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Customizing control bar */
+        .vjs-control-bar .vjs-spacer {
+            flex: 1; /* Expand to fill space */
+        }
+    </style>
+</head>
+<body>
+    <!-- Video.js Player -->
+    <div id="player-container">
+        <video id="my-video" class="video-js" controls preload="auto" width="640" height="360">
+            <source src="C:\Users\ahmad\Documents\GitHub\VIDTUBE\vids\hdfuoru.mp4" type="video/mp4">
             <!-- Fallback for browsers that don't support HTML5 video -->
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a web browser that
