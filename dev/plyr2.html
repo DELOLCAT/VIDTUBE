@@ -15,7 +15,9 @@
         var player = videojs('my-video', {
             // Player options
             controls: true, // Use native controls
-            fluid: false // Disable fluid resizing
+            fluid: false, // Disable fluid resizing
+            width: 480, // Set width explicitly
+            height: 360 // Set height explicitly
         });
 
         // Add custom button to control bar
@@ -23,19 +25,27 @@
             var controlBar = player.controlBar;
             var playToggle = controlBar.getChild('PlayToggle'); // Example existing control
 
+            // Create custom button container
+            var customButtonContainer = videojs.dom.createEl('div', {
+                className: 'vjs-custom-button-container'
+            });
+
             // Create custom button
             var customButton = videojs.dom.createEl('button', {
                 className: 'vjs-custom-button',
-                innerHTML: 'Exit'
+                innerHTML: 'Go to Link'
             });
 
             // Add click event listener to custom button
             customButton.addEventListener('click', function() {
-                window.location.href = 'https://m'; // Replace with your desired URL
+                window.location.href = 'https://www.example.com'; // Replace with your desired URL
             });
 
-            // Add custom button to control bar
-            controlBar.el().insertBefore(customButton, playToggle.el());
+            // Append custom button to container
+            customButtonContainer.appendChild(customButton);
+
+            // Append custom button container to control bar
+            controlBar.el().appendChild(customButtonContainer);
         });
     </script>
 </body>

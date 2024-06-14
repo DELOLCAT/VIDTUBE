@@ -10,8 +10,8 @@
     <!-- Custom CSS for player and controls -->
     <style>
         #player-container {
-            width: 640px;
-            height: 360px;
+            width: 480px; /* Set width */
+            height: 360px; /* Set height */
             position: relative;
             margin: 0 auto; /* Center the player */
             overflow: hidden; /* Hide overflow to prevent scrollbars */
@@ -27,17 +27,20 @@
             cursor: pointer;
         }
 
-        /* Customizing control bar */
-        .vjs-control-bar .vjs-spacer {
-            flex: 1; /* Expand to fill space */
+        /* Adjusting position of the custom button */
+        .vjs-control-bar .vjs-custom-button-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1; /* Ensure it's above other controls */
         }
     </style>
 </head>
 <body>
     <!-- Video.js Player -->
     <div id="player-container">
-        <video id="my-video" class="video-js" controls preload="auto" width="640" height="360">
-            <source src="C:\Users\ahmad\Documents\GitHub\VIDTUBE\vids\hdfuoru.mp4" type="video/mp4">
+        <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="480" height="360">
+            <source src="your-video-file.mp4" type="video/mp4">
             <!-- Fallback for browsers that don't support HTML5 video -->
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -54,7 +57,9 @@
         var player = videojs('my-video', {
             // Player options
             controls: true, // Use native controls
-            fluid: false // Disable fluid resizing
+            fluid: false, // Disable fluid resizing
+            width: 480, // Set width explicitly
+            height: 360 // Set height explicitly
         });
 
         // Add custom button to control bar
@@ -62,19 +67,27 @@
             var controlBar = player.controlBar;
             var playToggle = controlBar.getChild('PlayToggle'); // Example existing control
 
+            // Create custom button container
+            var customButtonContainer = videojs.dom.createEl('div', {
+                className: 'vjs-custom-button-container'
+            });
+
             // Create custom button
             var customButton = videojs.dom.createEl('button', {
                 className: 'vjs-custom-button',
-                innerHTML: 'Exit'
+                innerHTML: 'Go to Link'
             });
 
             // Add click event listener to custom button
             customButton.addEventListener('click', function() {
-                window.location.href = 'https://m'; // Replace with your desired URL
+                window.location.href = 'https://www.example.com'; // Replace with your desired URL
             });
 
-            // Add custom button to control bar
-            controlBar.el().insertBefore(customButton, playToggle.el());
+            // Append custom button to container
+            customButtonContainer.appendChild(customButton);
+
+            // Append custom button container to control bar
+            controlBar.el().appendChild(customButtonContainer);
         });
     </script>
 </body>
