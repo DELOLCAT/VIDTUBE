@@ -5,6 +5,8 @@
                 <a href="https://videojs.com/html5-video-support/" target="_blank" rel="noopener">supports HTML5 video</a>
             </p>
         </video>
+        <!-- Custom button for link -->
+        <div id="custom-button" class="vjs-custom-button" onclick="window.location.href = 'https://m';">Go to Link</div>
     </div>
 
     <!-- Video.js JavaScript -->
@@ -16,36 +18,59 @@
             // Player options
             controls: true, // Use native controls
             fluid: false, // Disable fluid resizing
-            width: 480, // Set width explicitly 
+            width: 640, // Set width explicitly
             height: 356 // Set height explicitly
         });
 
-        // Add custom button to control bar
+        // Function to remove specific buttons from control bar
+        function removeButtons() {
+            // Remove fullscreen button
+            player.controlBar.removeChild('FullscreenToggle');
+            // Remove miniplayer button (if present)
+            player.controlBar.removeChild('PictureInPictureToggle');
+        }
+
+        // Remove unwanted buttons when player is ready
         player.ready(function() {
-            var controlBar = player.controlBar;
-            var playToggle = controlBar.getChild('PlayToggle'); // Example existing control
+            removeButtons();
 
-            // Create custom button container
-            var customButtonContainer = videojs.dom.createEl('div', {
-                className: 'vjs-custom-button-container'
+            var controlBar = player.controlBar.el();
+            var customButton = document.getElementById('custom-button');
+
+            // Function to hide control bar and custom button
+            function hideControls() {
+                controlBar.style.opacity = 0;
+                customButton.style.opacity = 0;
+            }
+
+            // Function to show control bar and custom button
+            function showControls() {
+                controlBar.style.opacity = 1;
+                customButton.style.opacity = 1;
+            }
+
+            // Event listeners to show controls on user activity
+            player.on('useractive', function() {
+                showControls();
+                // Automatically hide controls after 3 seconds of inactivity
+                clearTimeout(timeout);
+                timeout = setTimeout(hideControls, 1000);
             });
 
-            // Create custom button
-            var customButton = videojs.dom.createEl('button', {
-                className: 'vjs-custom-button',
-                innerHTML: 'Go to Link'
+            // Initially hide controls
+            hideControls();
+
+            // Variable to hold timeout reference
+            var timeout;
+
+            // Hide controls on user inactivity
+            player.on('userinactive', function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(hideControls, 1000);
             });
 
-            // Add click event listener to custom button
-            customButton.addEventListener('click', function() {
-                window.location.href = 'https://www.example.com'; // Replace with your desired URL
-            });
-
-            // Append custom button to container
-            customButtonContainer.appendChild(customButton);
-
-            // Append custom button container to control bar
-            controlBar.el().appendChild(customButtonContainer);
+            // Show controls on player initialization
+            showControls();
         });
     </script>
 </body>

@@ -1,58 +1,104 @@
-<head><style class="vjs-styles-defaults">
-    .video-js {
-      width: 300px;
-      height: 150px;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video.js Custom Link Button</title>
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet">
 
-    .vjs-fluid {
-      padding-top: 56.25%
-    }
-  </style><style class="vjs-styles-dimensions">
-    .my-video-dimensions {
-      width: 480px;
-      height: 356px;
-    }
+    <!-- Custom CSS for player and controls -->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
 
-    .my-video-dimensions.vjs-fluid {
-      padding-top: 100%;
-    }
-  </style>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video.js Custom Button in Control Bar</title>
-  <!-- Video.js CSS -->
-  <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet">
+        #player-container {
+            width: 640px; /* Set width */
+            height: 356px; /* Set height */
+            position: relative;
+            margin: 0 auto; /* Center the player */
+        }
 
-  <!-- Custom CSS for player and controls -->
-  <style>
-      #player-container {
-          width: 480px; /* Set width */
-          height: 356px; /* Set height */
-          position: relative;
-          margin: 0 auto; /* Center the player */
-          overflow: hidden; /* Hide overflow to prevent scrollbars */
-      }
+        /* Custom button styles */
+        .vjs-custom-button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
 
-      /* Custom button styles */
-      .vjs-custom-button {
-          background-color: #4CAF50; /* Green */
-          color: white;
-          padding: 8px 16px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-      }
+        /* Video.js Control Bar Adjustments */
+        .vjs-control-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            padding: 5px 10px; /* Padding around control bar */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
 
-      /* Adjusting position of the custom button */
-      .vjs-control-bar .vjs-custom-button-container {
-          position: absolute;
-          top: 0;
-          right: 0;
-          z-index: 1; /* Ensure it's above other controls */
-      }
-      body,html {
-          margin: 0px;
-          padding: 0px;
-      }
-  </style>
+        .vjs-time-controls {
+            order: 1; /* Move time controls to the left */
+        }
+
+        .vjs-current-time,
+        .vjs-time-divider,
+        .vjs-duration {
+            margin-right: 10px; /* Adjust spacing between time controls */
+            color: #fff; /* Text color */
+        }
+    </style>
 </head>
+<body>
+    <!-- Video.js Player -->
+    <div id="player-container">
+        <video id="my-video" class="video-js" controls preload="auto" width="640" height="356">
+            <source src="your-video-file.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support HTML5 video -->
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank" rel="noopener">supports HTML5 video</a>
+            </p>
+        </video>
+        <!-- Custom button for link -->
+        <div class="vjs-custom-button" onclick="window.location.href = 'https://www.example.com';">Go to Link</div>
+    </div>
+
+    <!-- Video.js JavaScript -->
+    <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+
+    <script>
+        // Initialize Video.js player
+        var player = videojs('my-video', {
+            // Player options
+            controls: true, // Use native controls
+            fluid: false, // Disable fluid resizing
+            width: 640, // Set width explicitly
+            height: 356 // Set height explicitly
+        });
+
+        // Function to remove specific buttons from control bar
+        function removeButtons() {
+            // Remove fullscreen button
+            player.controlBar.removeChild('FullscreenToggle');
+            // Remove miniplayer button (if present)
+            player.controlBar.removeChild('PictureInPictureToggle');
+        }
+
+        // Remove unwanted buttons when player is ready
+        player.ready(function() {
+            removeButtons();
+        });
+    </script>
+</body>
+</html>
