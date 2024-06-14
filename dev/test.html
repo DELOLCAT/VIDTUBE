@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plyr Custom Button</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <style>
+        .plyr__controls__item.plyr__custom-button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <video id="player" playsinline controls>
+        <source src="your-video-file.mp4" type="video/mp4" />
+    </video>
+
+    <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+    <script>
+        const player = new Plyr('#player');
+
+        // Add custom button
+        const button = document.createElement('button');
+        button.className = 'plyr__controls__item plyr__custom-button';
+        button.textContent = 'Go to Link';
+        button.onclick = function() {
+            window.location.href = 'https://www.example.com'; // Replace with your desired URL
+        };
+
+        // Append the button to the controls
+        const controls = document.querySelector('.plyr__controls');
+        controls.appendChild(button);
+    </script>
+</body>
+</html>
