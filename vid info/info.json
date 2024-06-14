@@ -7,5 +7,10 @@
 "2":[
     {"name":"lol"},
     {"thumbnail":"/thumbnails/none.png"},
-    {"file":"/vids/hdfuoru.mp4"}
+    {"file":"/vids/2.mp4"}
+],
+"3":[
+    {"name":"colors idk"},
+    {"thumbnail":"/thumbnails/none.png"},
+    {"file":"/vids/3.mp4"}
 ]}
