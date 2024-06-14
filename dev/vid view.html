@@ -3,7 +3,7 @@
     <head>
         <style>
             body,html {
-                width: 100vh;
+                height: 300px;
                 width: 100vw;
                 padding: 0px;
                 margin: 0px;
@@ -11,9 +11,17 @@
             video {
                 margin: 0px;
                 padding: 0px;
+                background-color: rgb(26,26,26);
             }
 
         </style>
+        <script>
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'q' || event.key === 'Q') {
+                    window.location.href = 'https://redirect'; // Replace with the URL you want to redirect to
+                }
+            });
+        </script>
     </head>
     <body>
         <video src="vids/djfhejs.mp4" width="480px" height="300px" controls></video>
