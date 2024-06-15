@@ -28,4 +28,9 @@
     {"name":"city 2"},
     {"thumbnail":"/thumbnails/none.png"},
     {"file":"/vids/6.mp4"}
+],
+"7":[
+    {"name":"20 mins countdown"},
+    {"thumbnail":"/thumbnails/7.png"},
+    {"file":"/vids/7.mp4"}
 ]}
